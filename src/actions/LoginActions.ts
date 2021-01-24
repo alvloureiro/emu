@@ -1,17 +1,17 @@
 import {ActionTypes} from './types';
 import {UserCredentials, UserData} from './payloads';
 
-interface LoginDidAttempt {
+export interface LoginDidAttempt {
   type: ActionTypes.LOGIN_DID_ATTEMPT;
   payload: UserCredentials;
 }
 
-interface LoginDidSucces {
+export interface LoginDidSucces {
   type: ActionTypes.LOGIN_DID_SUCCESS;
   payload: UserData;
 }
 
-interface LoginDidFail {
+export interface LoginDidFail {
   type: ActionTypes.LOGIN_DID_FAIL;
   error: string;
 }

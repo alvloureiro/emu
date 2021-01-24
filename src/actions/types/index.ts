@@ -1,8 +1,14 @@
 export enum ActionTypes {
+  // App global state
+  APP_SHOW_LOADING = 'app_show_loading',
+  APP_HIDE_LOADING = 'app_hide_loading',
+  APP_DID_OCCUR_ERROR = 'app_did_occur_error',
+
   // Login actions
   LOGIN_DID_ATTEMPT = 'login_did_attempt',
   LOGIN_DID_SUCCESS = 'login_did_success',
   LOGIN_DID_FAIL = 'login_did_fail',
+
   // Forgot password actions
   LOGIN_FORGOT_PASSWORD_REQUEST = 'login_forgot_password_request',
   LOGIN_FORGOT_PASSWORD_REQUEST_DID_SUCCESS = 'login_forgot_password_did_success',

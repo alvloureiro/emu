@@ -1,20 +1,26 @@
 import React, {useState} from 'react';
 import {
-  Button,
   Image,
   NativeSyntheticEvent,
   NativeTouchEvent,
   StyleSheet,
+  TouchableWithoutFeedback,
   View,
 } from 'react-native';
-import {EmuTextInput} from '../common';
+import {Button, Icon, Input} from '@ui-kitten/components';
 import {useActions} from '../../hooks/useActions';
 import colors from '../config/colors';
 import strings from '../config/strings';
 
+const AlertIcon = (props: any) => (
+  <Icon {...props} name="alert-circle-outline" />
+);
+
 const LoginComponent: React.FC = () => {
   const [username, setUsername] = useState('');
   const [password, setPassword] = useState('');
+  const [secureTextEntry, setSecureTextEntry] = React.useState(true);
+
   const {loginDidAttempt} = useActions();
 
   const handleUserNameChanged = (email: string) => {
@@ -31,52 +37,59 @@ const LoginComponent: React.FC = () => {
     loginDidAttempt({username, password});
   };
 
+  const toggleSecureEntry = () => {
+    setSecureTextEntry(!secureTextEntry);
+  };
+
+  const renderIcon = (props: any) => (
+    <TouchableWithoutFeedback onPress={toggleSecureEntry}>
+      <Icon {...props} name={secureTextEntry ? 'eye-off' : 'eye'} />
+    </TouchableWithoutFeedback>
+  );
+
   return (
-    <View style={styles.container}>
+    <>
       <Image
         source={require('../config/assets/images/logo.png')}
         style={styles.logo}
       />
       <View style={styles.form}>
-        <EmuTextInput
+        <Input
           value={username}
           onChangeText={handleUserNameChanged}
           placeholder={strings.EMAIL_PLACEHOLDER}
+          size="large"
           textContentType="emailAddress"
         />
-        <EmuTextInput
+        <Input
+          caption="Senha deve conter pelo menos 8 caracteres"
           value={password}
           onChangeText={handlePasswordChange}
           placeholder={strings.PASSWORD_PLACEHOLDER}
+          accessoryRight={renderIcon}
+          captionIcon={AlertIcon}
+          size="large"
+          secureTextEntry={secureTextEntry}
           textContentType="password"
-          secureTextEntry={true}
         />
-        <Button
-          color={colors.GREEN}
-          title={strings.LOGIN}
-          onPress={handleLoginPress}
-        />
+        <Button style={{marginTop: 50}} size="large" onPress={handleLoginPress}>
+          {strings.LOGIN}
+        </Button>
       </View>
-    </View>
+    </>
   );
 };
 
 const styles = StyleSheet.create({
-  container: {
-    flex: 1,
-    backgroundColor: colors.WHITE,
-    alignItems: 'center',
-    justifyContent: 'space-between',
-  },
   logo: {
-    backgroundColor: colors.WHITE,
+    //backgroundColor: colors.WHITE,
     flex: 1,
     width: '60%',
     resizeMode: 'contain',
     alignSelf: 'center',
   },
   form: {
-    backgroundColor: colors.WHITE,
+    //backgroundColor: colors.BLUELIGHT,
     flex: 1,
     justifyContent: 'center',
     width: '90%',

@@ -16,6 +16,7 @@ export default (
   state: LoginState = intialState,
   action: LoginAction,
 ): LoginState => {
+  console.log('LoginReducer: ', action);
   switch (action.type) {
     case ActionTypes.LOGIN_DID_ATTEMPT: {
       const {username} = action.payload;

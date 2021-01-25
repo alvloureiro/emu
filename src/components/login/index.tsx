@@ -8,15 +8,17 @@ import {
   View,
 } from 'react-native';
 import {EmuTextInput} from '../common';
+import {useActions} from '../../hooks/useActions';
 import colors from '../config/colors';
 import strings from '../config/strings';
 
 const LoginComponent: React.FC = () => {
-  const [email, setEmail] = useState('');
+  const [username, setUsername] = useState('');
   const [password, setPassword] = useState('');
+  const {loginDidAttempt} = useActions();
 
-  const handleEmailChange = (email: string) => {
-    setEmail(email);
+  const handleUserNameChanged = (email: string) => {
+    setUsername(email);
   };
 
   const handlePasswordChange = (pwd: string) => {
@@ -26,6 +28,7 @@ const LoginComponent: React.FC = () => {
   const handleLoginPress = (event: NativeSyntheticEvent<NativeTouchEvent>) => {
     event.preventDefault();
     console.log('Submit clicked!');
+    loginDidAttempt({username, password});
   };
 
   return (
@@ -36,8 +39,8 @@ const LoginComponent: React.FC = () => {
       />
       <View style={styles.form}>
         <EmuTextInput
-          value={email}
-          onChangeText={handleEmailChange}
+          value={username}
+          onChangeText={handleUserNameChanged}
           placeholder={strings.EMAIL_PLACEHOLDER}
           textContentType="emailAddress"
         />

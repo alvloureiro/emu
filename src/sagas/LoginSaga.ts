@@ -1,23 +1,17 @@
 import {put, call, takeEvery, all, fork} from 'redux-saga/effects';
-import {
-  ActionTypes,
-  AppShowLoading,
-  AppHideLoading,
-  LoginDidAttempt,
-  loginDidSucces,
-  loginDidFail,
-} from '../actions';
+import {ActionTypes, LoginDidAttempt, actionCreators} from '../actions';
 import {doLogin} from '../api';
 
 function* doLoginSaga(action: LoginDidAttempt) {
   try {
-    yield put(AppShowLoading());
+    console.log('saga login', action);
+    yield put(actionCreators.AppShowLoading());
     const result = yield call(doLogin, action.payload);
-    yield put(AppHideLoading());
-    yield put(loginDidSucces(result));
+    yield put(actionCreators.AppHideLoading());
+    yield put(actionCreators.loginDidSucces(result));
   } catch (error) {
-    yield put(AppHideLoading());
-    yield put(loginDidFail(error.message));
+    yield put(actionCreators.AppHideLoading());
+    yield put(actionCreators.loginDidFail(error.message));
   }
 }
 

@@ -1,12 +1,15 @@
 import React from 'react';
+import {StyleSheet} from 'react-native';
 import {Layout, Text} from '@ui-kitten/components';
 
-const UserAccountsLimits: React.FC = () => {
+export const UserAccountsLimits: React.FC = () => {
   return (
-    <Layout>
+    <Layout style={styles.container}>
       <Text>Limites</Text>
     </Layout>
   );
 };
 
-export default UserAccountsLimits;
+const styles = StyleSheet.create({
+  container: {flex: 1, alignItems: 'center', justifyContent: 'center'},
+});

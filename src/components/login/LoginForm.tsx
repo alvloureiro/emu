@@ -7,9 +7,9 @@ import {
   View,
 } from 'react-native';
 import {Button, Icon, Input, Layout, Text} from '@ui-kitten/components';
-import {} from '@react-navigation/native';
 import {StackScreenProps} from '@react-navigation/stack';
 import {useActions} from '../../hooks/useActions';
+import {useTypedSelector} from '../../hooks/useTypedSelector';
 import strings from '../config/strings';
 
 const AlertIcon = (props: any) => (
@@ -21,9 +21,10 @@ type Props = StackScreenProps<{}>;
 const LoginForm: React.FC<Props> = (props) => {
   const [username, setUsername] = useState('');
   const [password, setPassword] = useState('');
-  const [secureTextEntry, setSecureTextEntry] = React.useState(true);
+  const [secureTextEntry, setSecureTextEntry] = useState(true);
 
   const {loginDidAttempt} = useActions();
+  const {error} = useTypedSelector((state) => state.login);
 
   const handleUserNameChanged = (email: string) => {
     setUsername(email);
@@ -57,23 +58,26 @@ const LoginForm: React.FC<Props> = (props) => {
       />
       <View style={styles.form}>
         <Input
-          value={username}
+          caption="Seu email cadastrado na ume"
+          captionIcon={AlertIcon}
           onChangeText={handleUserNameChanged}
           placeholder={strings.EMAIL_PLACEHOLDER}
           size="large"
           textContentType="emailAddress"
+          value={username}
         />
         <Input
+          accessoryRight={renderIcon}
           caption="Senha deve conter pelo menos 8 caracteres"
-          value={password}
+          captionIcon={AlertIcon}
           onChangeText={handlePasswordChange}
           placeholder={strings.PASSWORD_PLACEHOLDER}
-          accessoryRight={renderIcon}
-          captionIcon={AlertIcon}
           size="large"
           secureTextEntry={secureTextEntry}
           textContentType="password"
+          value={password}
         />
+        {error && <Text status="danger">{error}</Text>}
         <Button style={styles.button} size="large" onPress={handleLoginPress}>
           {strings.LOGIN}
         </Button>

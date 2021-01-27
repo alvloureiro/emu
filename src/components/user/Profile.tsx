@@ -1,12 +1,14 @@
 import React from 'react';
+import {StyleSheet} from 'react-native';
 import {Layout, Text} from '@ui-kitten/components';
 
-const Profile: React.FC = () => {
+export const Profile: React.FC = () => {
   return (
-    <Layout>
+    <Layout style={styles.container}>
       <Text>Meu Perfil</Text>
     </Layout>
   );
 };
-
-export default Profile;
+const styles = StyleSheet.create({
+  container: {flex: 1, alignItems: 'center', justifyContent: 'center'},
+});

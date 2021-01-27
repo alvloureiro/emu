@@ -1,12 +1,15 @@
 import React from 'react';
+import {StyleSheet} from 'react-native';
 import {Layout, Text} from '@ui-kitten/components';
 
-const UserPurchases: React.FC = () => {
+export const UserPurchases: React.FC = () => {
   return (
-    <Layout>
+    <Layout style={styles.container}>
       <Text>Compras</Text>
     </Layout>
   );
 };
 
-export default UserPurchases;
+const styles = StyleSheet.create({
+  container: {flex: 1, alignItems: 'center', justifyContent: 'center'},
+});

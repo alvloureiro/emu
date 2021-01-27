@@ -15,6 +15,9 @@ export enum ActionTypes {
   LOGIN_FORGOT_PASSWORD_REQUEST_DID_FAIL = 'login_forgot_password_did_fail',
 
   // User actions
+  USER_GET_ACCOUNT_INFO = 'user_get_account_info',
+  USER_GET_ACCOUNT_INFO_DID_SUCCESS = 'user_get_account_info_did_success',
+  USER_GET_ACCOUNT_INFO_DID_FAIL = 'user_get_account_info_did_fail',
   USER_GET_PURCHASES = 'user_get_purchases',
   USER_GET_PURCHASES_DID_SUCCESS = 'user_get_purchases_did_success',
   USER_GET_PURCHASES_DID_FAIL = 'user_get_purchases_did_fail',

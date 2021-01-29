@@ -1,14 +1,14 @@
 import React from 'react';
-import {NavigationContainer, RouteProp} from '@react-navigation/native';
+
 import {
   createBottomTabNavigator,
-  BottomTabNavigationProp,
+  BottomTabBarProps,
+  BottomTabBarOptions,
 } from '@react-navigation/bottom-tabs';
 import {
   BottomNavigation,
   BottomNavigationTab,
-  Layout,
-  Text,
+  Icon,
 } from '@ui-kitten/components';
 import {
   HomeUserStats as Home,
@@ -16,37 +16,39 @@ import {
   Profile as Perfil,
   UserPurchases as Compras,
 } from '../user';
-import {UserData} from '../../actions';
-
-type RootTabParamsList = {
-  Perfil: {user: UserData};
-  Home: {user: UserData};
-  Compras: {user: UserData};
-  Limites: {user: UserData};
-};
-type HomeUserRouteProp = RouteProp<RootTabParamsList, 'Home'>;
-type HomeUserNavigationProp = BottomTabNavigationProp<
-  RootTabParamsList,
-  'Home'
->;
-
-type HomeUserProps = {
-  route: HomeUserRouteProp;
-  navigation: HomeUserNavigationProp;
-};
+import {RootTabParamsList} from '../../navigation';
 
 const Tab = createBottomTabNavigator<RootTabParamsList>();
 
+const HomeIcon = (props: any) => <Icon {...props} name="home-outline" />;
+const ShopIcon = (props: any) => (
+  <Icon {...props} name="shopping-cart-outline" />
+);
+const LimitsIcon = (props: any) => <Icon {...props} name="bar-chart-outline" />;
+const ProfileIcon = (props: any) => <Icon {...props} name="person-outline" />;
+
+const BottomTabBar = (props: BottomTabBarProps<BottomTabBarOptions>) => (
+  <BottomNavigation
+    selectedIndex={props.state.index}
+    appearance="noIndicator"
+    onSelect={(index) =>
+      props.navigation.navigate(props.state.routeNames[index])
+    }>
+    <BottomNavigationTab title="Home" icon={HomeIcon} />
+    <BottomNavigationTab title="Compras" icon={ShopIcon} />
+    <BottomNavigationTab title="Limites" icon={LimitsIcon} />
+    <BottomNavigationTab title="Perfil" icon={ProfileIcon} />
+  </BottomNavigation>
+);
+
 const HomeNavigator: React.FC = () => {
   return (
-    <NavigationContainer>
-      <Tab.Navigator>
-        <Tab.Screen name="Home" component={Home} />
-        <Tab.Screen name="Compras" component={Compras} />
-        <Tab.Screen name="Limites" component={Limites} />
-        <Tab.Screen name="Perfil" component={Perfil} />
-      </Tab.Navigator>
-    </NavigationContainer>
+    <Tab.Navigator tabBar={(props) => <BottomTabBar {...props} />}>
+      <Tab.Screen name="Home" component={Home} />
+      <Tab.Screen name="Compras" component={Compras} />
+      <Tab.Screen name="Limites" component={Limites} />
+      <Tab.Screen name="Perfil" component={Perfil} />
+    </Tab.Navigator>
   );
 };
 

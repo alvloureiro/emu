@@ -1,31 +1,20 @@
 import React from 'react';
-
 import {
   createBottomTabNavigator,
   BottomTabBarProps,
   BottomTabBarOptions,
 } from '@react-navigation/bottom-tabs';
-import {
-  BottomNavigation,
-  BottomNavigationTab,
-  Icon,
-} from '@ui-kitten/components';
+import {BottomNavigation, BottomNavigationTab} from '@ui-kitten/components';
 import {
   HomeUserStats as Home,
   UserAccountsLimits as Limites,
   Profile as Perfil,
   UserPurchases as Compras,
 } from '../user';
+import {HomeIcon, LimitsIcon, ShopIcon, ProfileIcon} from '../common';
 import {RootTabParamsList} from '../../navigation';
 
 const Tab = createBottomTabNavigator<RootTabParamsList>();
-
-const HomeIcon = (props: any) => <Icon {...props} name="home-outline" />;
-const ShopIcon = (props: any) => (
-  <Icon {...props} name="shopping-cart-outline" />
-);
-const LimitsIcon = (props: any) => <Icon {...props} name="bar-chart-outline" />;
-const ProfileIcon = (props: any) => <Icon {...props} name="person-outline" />;
 
 const BottomTabBar = (props: BottomTabBarProps<BottomTabBarOptions>) => (
   <BottomNavigation

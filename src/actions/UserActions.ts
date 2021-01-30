@@ -69,6 +69,13 @@ export interface UserGetPurchaseResumeDidFail {
   };
 }
 
+export interface UserChangeInfoViewStats {
+  type: ActionTypes.USER_CHANGE_INFO_VIEW_STATS;
+  payload: {
+    index: number;
+  };
+}
+
 export type UserAction =
   | UserGetAccountInfo
   | UserGetAccountInfoDidSuccess
@@ -78,4 +85,5 @@ export type UserAction =
   | UserGetPurchasesDidFail
   | UserGetPurchaseResume
   | UserGetPurchaseResumeDidSuccess
-  | UserGetPurchaseResumeDidFail;
+  | UserGetPurchaseResumeDidFail
+  | UserChangeInfoViewStats;

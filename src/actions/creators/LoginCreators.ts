@@ -12,7 +12,7 @@ export const loginDidAttempt = (credentials: UserCredentials): LoginAction => {
 export const loginDidSucces = (user: UserData): LoginAction => {
   return {
     type: ActionTypes.LOGIN_DID_SUCCESS,
-    payload: {data: user},
+    payload: {user},
   };
 };
 

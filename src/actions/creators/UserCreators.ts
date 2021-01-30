@@ -87,3 +87,12 @@ export const userGetPurchasesResumeDidFail = (error: string): UserAction => {
     },
   };
 };
+
+export const userChangeInfoCardStats = (index: number): UserAction => {
+  return {
+    type: ActionTypes.USER_CHANGE_INFO_VIEW_STATS,
+    payload: {
+      index,
+    },
+  };
+};

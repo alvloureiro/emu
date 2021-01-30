@@ -28,6 +28,8 @@ export enum ActionTypes {
   USER_GET_PURCHASES_RESUME_DID_SUCCESS = 'user_get_purchases_resume_did_success',
   USER_GET_PURCHASES_RESUME_DID_FAIL = 'user_get_purchases_resume_did_fail',
 
+  USER_CHANGE_INFO_VIEW_STATS = 'user_change_info_view_stats',
+
   // Partner actions
   APP_GET_PARTNERS = 'app_get_partners',
   APP_GET_PARTNERS_DID_SUCCESS = 'app_get_partners_did_success',

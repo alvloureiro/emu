@@ -8,7 +8,7 @@ export interface LoginDidAttempt {
 
 export interface LoginDidSucces {
   type: ActionTypes.LOGIN_DID_SUCCESS;
-  payload: {data: UserData};
+  payload: {user: UserData};
 }
 
 export interface LoginDidFail {

@@ -8,10 +8,10 @@ function* doLoginSaga(action: LoginDidAttempt) {
     console.log('saga login', action);
     const {data: credentials} = action.payload;
     yield put(actionCreators.appShowLoading());
-    const result = yield call(doLogin, credentials);
-    console.log('LOGIN SAGA', result);
+    const user = yield call(doLogin, credentials);
+    console.log('LOGIN SAGA', user);
     yield put(actionCreators.appHideLoading());
-    yield put(actionCreators.loginDidSucces(result));
+    yield put(actionCreators.loginDidSucces(user));
     RootNavigation.navigate('Home', {});
   } catch (error) {
     yield put(actionCreators.appHideLoading());

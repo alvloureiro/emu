@@ -68,6 +68,7 @@ export const getUserAccountInfo = (user: UserData): UserAccountInfo => {
 };
 
 export const getUserPurchasesResume = (user: UserData): UserPurchaseResume => {
+  // TODO improve user validation
   if (!user) {
     throw new Error('Usuário Inválido!');
   }

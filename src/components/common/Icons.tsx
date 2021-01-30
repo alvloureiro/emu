@@ -1,3 +1,4 @@
+import React from 'react';
 import {Icon} from '@ui-kitten/components';
 
 export const HomeIcon = (props: any) => <Icon {...props} name="home-outline" />;
@@ -12,4 +13,8 @@ export const LimitsIcon = (props: any) => (
 
 export const ProfileIcon = (props: any) => (
   <Icon {...props} name="person-outline" />
+);
+
+export const Wallet = (props: any) => (
+  <Icon {...props} name="briefcase-outline" />
 );

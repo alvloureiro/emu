@@ -19,14 +19,15 @@ export default (
   console.log('LoginReducer: ', action);
   switch (action.type) {
     case ActionTypes.LOGIN_DID_ATTEMPT: {
-      const {username} = action.payload;
+      const {username} = action.payload.data;
       return {...state, username};
     }
     case ActionTypes.LOGIN_DID_SUCCESS: {
-      return {...state, userData: action.payload};
+      const {user} = action.payload;
+      return {...state, userData: user};
     }
     case ActionTypes.LOGIN_DID_FAIL: {
-      return {...state, error: action.error};
+      return {...state, error: action.payload.error};
     }
     default:
       return state;

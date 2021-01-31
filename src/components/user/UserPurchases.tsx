@@ -1,4 +1,4 @@
-import React, {ReactElement} from 'react';
+import React, {ReactElement, useEffect, useState} from 'react';
 import {ListRenderItemInfo, StyleSheet, View, ViewProps} from 'react-native';
 import {
   Card,
@@ -10,9 +10,21 @@ import {
   Text,
 } from '@ui-kitten/components';
 import {ForwardIcon, Header, ShopIcon} from '../common';
+import {useTypedSelector} from '../../hooks/useTypedSelector';
+import {useActions} from '../../hooks/useActions';
 import {Purchase} from '../../actions';
 
 export const UserPurchases: React.FC = () => {
+  const [selectedIndex, setSelectedIndex] = useState(new IndexPath(0));
+  const {userData} = useTypedSelector((state) => state.login);
+  const {purchases, userPurchaseInfo} = useTypedSelector((state) => state.home);
+  const {userGetPurchases, userGetPurchasesResume} = useActions();
+
+  useEffect(() => {
+    userGetPurchases(userData);
+    userGetPurchasesResume(userData);
+  }, [userData]);
+
   const renderCardHeader = (
     headerProps: ViewProps | undefined,
     info: {title: string},
@@ -78,7 +90,7 @@ export const UserPurchases: React.FC = () => {
               renderCardHeader(headerProps, {title: 'Pago'})
             }>
             <Text category="primary" style={resumeCard.infoArea}>
-              R$ 21,00
+              R$ {userPurchaseInfo.resume.amount_paid}
             </Text>
           </Card>
 
@@ -88,7 +100,7 @@ export const UserPurchases: React.FC = () => {
               renderCardHeader(headerProps, {title: 'A vencer'})
             }>
             <Text category="warning" style={resumeCard.infoArea}>
-              R$ 42,00
+              R$ {userPurchaseInfo.resume.amount_payable}
             </Text>
           </Card>
 
@@ -98,7 +110,7 @@ export const UserPurchases: React.FC = () => {
               renderCardHeader(headerProps, {title: 'Vencidas'})
             }>
             <Text category="danger" style={resumeCard.infoArea}>
-              R$ 45,32
+              R$ {userPurchaseInfo.resume.unpaid_amount}
             </Text>
           </Card>
         </Layout>
@@ -114,9 +126,11 @@ export const UserPurchases: React.FC = () => {
           label="Filtrar por:"
           size="medium"
           placeholder="Selecione um tipo de filtro"
-          selectedIndex={new IndexPath(1)}
-          // onSelect={(index) => setSelectedIndex(index)}
-        >
+          selectedIndex={selectedIndex}
+          onSelect={(index: IndexPath | IndexPath[]) => {
+            console.log(index);
+            setSelectedIndex(index as IndexPath);
+          }}>
           <SelectItem
             title="Primeira compra"
             accessoryLeft={ShopIcon}
@@ -132,7 +146,7 @@ export const UserPurchases: React.FC = () => {
       <List
         style={list.container}
         contentContainerStyle={list.contentContainer}
-        data={[]}
+        data={purchases}
         renderItem={renderCardItem}
       />
     </>

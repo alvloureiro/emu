@@ -1,3 +1,4 @@
+import {UserPurchaseResume} from '../../actions';
 export const MockLoginCredentials = {
   username: 'sonic@ume.com.br',
   password: 'password',
@@ -18,21 +19,16 @@ export const MockUserAccountInfo = {
   available: 70,
 };
 
-export const AcessoriesCategory = {
-  name: 'Acessórios',
-};
-
-export const SupermarketCategory = {
-  name: 'Supermercado',
-};
-
-export const FoodsCategory = {
-  name: 'Alimentos',
-};
+export enum PartnerCategory {
+  Acessories = 'Acessórios',
+  Foods = 'Alimentos',
+  Telephony = 'Telefonia',
+  Supermarker = 'Supermercado',
+}
 
 export const MockTropicalAtacaoRetailer = {
   id: 1,
-  category: AcessoriesCategory,
+  category: PartnerCategory.Acessories,
   name: 'Tropical Atacadão',
   logo_url: '',
   phone: '222222222',
@@ -42,7 +38,7 @@ export const MockTropicalAtacaoRetailer = {
 
 export const MockTropicalMultilojaRetailer = {
   id: 2,
-  category: SupermarketCategory,
+  category: PartnerCategory.Acessories,
   name: 'Tropical Multiloja',
   logo_url: '',
   phone: '222222222',
@@ -51,13 +47,62 @@ export const MockTropicalMultilojaRetailer = {
 };
 
 export const MockCORetailer = {
-  id: 2,
-  category: SupermarketCategory,
+  id: 3,
+  category: PartnerCategory.Supermarker,
   name: 'CO Supermercados',
   logo_url: '',
   phone: '222222222',
   address: 'Av Tefé',
   parent_store_location: '',
+};
+
+export const MockViaUnoRetailer = {
+  id: 4,
+  category: PartnerCategory.Acessories,
+  name: 'Via Uno',
+  logo_url: '',
+  phone: '222222222',
+  address: 'Manaura Shopping',
+  parent_store_location: '',
+};
+
+export const MockInfoCellRetailer = {
+  id: 5,
+  category: PartnerCategory.Telephony,
+  name: 'Info Cell',
+  logo_url: '',
+  phone: '222222222',
+  address: 'Samaúma Shopping',
+  parent_store_location: '',
+};
+
+export const MockClaroRetailer = {
+  id: 6,
+  category: PartnerCategory.Telephony,
+  name: 'Claro',
+  logo_url: '',
+  phone: '222222222',
+  address: 'Samaúma Shopping',
+  parent_store_location: '',
+};
+
+export const MockPartners = {
+  user: {
+    data: MockUserData,
+    accountInfo: MockUserAccountInfo,
+  },
+  partners: {
+    data: {
+      supermarket: [MockCORetailer],
+      food: [MockCORetailer],
+      acessories: [
+        MockViaUnoRetailer,
+        MockTropicalMultilojaRetailer,
+        MockTropicalAtacaoRetailer,
+      ],
+      telephony: [MockClaroRetailer, MockInfoCellRetailer],
+    },
+  },
 };
 
 export const MockPurchaseList = [
@@ -84,7 +129,7 @@ export const MockPurchaseList = [
   },
 ];
 
-export const MockUserPurchaseResume = {
+export const MockUserPurchaseResume: UserPurchaseResume = {
   user: MockUserData,
   resume: {
     amount_paid: 200,

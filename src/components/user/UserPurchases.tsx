@@ -9,13 +9,17 @@ import {
   SelectItem,
   Text,
 } from '@ui-kitten/components';
-import {ForwardIcon, Header, ShopIcon} from '../common';
+import {Header} from '../common';
 import {useTypedSelector} from '../../hooks/useTypedSelector';
 import {useActions} from '../../hooks/useActions';
 import {Purchase} from '../../actions';
 
+const filters = ['Primeira compra', 'Última compra'];
+
 export const UserPurchases: React.FC = () => {
+  // FIXME: use redux
   const [selectedIndex, setSelectedIndex] = useState(new IndexPath(0));
+
   const {userData} = useTypedSelector((state) => state.login);
   const {purchases, userPurchaseInfo} = useTypedSelector((state) => state.home);
   const {userGetPurchases, userGetPurchasesResume} = useActions();
@@ -54,6 +58,10 @@ export const UserPurchases: React.FC = () => {
         {info.retailer.name}
       </Text>
     </View>
+  );
+
+  const renderSelectItem = (title: string) => (
+    <SelectItem key="title" title={title} />
   );
 
   const renderCardItem = (info: ListRenderItemInfo<Purchase>): ReactElement => {
@@ -130,17 +138,9 @@ export const UserPurchases: React.FC = () => {
           onSelect={(index: IndexPath | IndexPath[]) => {
             console.log(index);
             setSelectedIndex(index as IndexPath);
-          }}>
-          <SelectItem
-            title="Primeira compra"
-            accessoryLeft={ShopIcon}
-            accessoryRight={ForwardIcon}
-          />
-          <SelectItem
-            title="Última compra"
-            accessoryLeft={ShopIcon}
-            accessoryRight={ForwardIcon}
-          />
+          }}
+          value={filters[selectedIndex.row]}>
+          {filters.map(renderSelectItem)}
         </Select>
       </Layout>
       <List

@@ -4,8 +4,9 @@ import {
   UserAccountInfo,
   UserPurchaseResume,
   Purchase,
-  Retailer,
   GeneralUserAccountResume,
+  Partners,
+  Retailer,
 } from '../actions';
 import {
   MockLoginCredentials,
@@ -13,9 +14,7 @@ import {
   MockPurchaseList,
   MockUserAccountInfo,
   MockUserPurchaseResume,
-  MockCORetailer,
-  MockTropicalAtacaoRetailer,
-  MockTropicalMultilojaRetailer,
+  MockPartners,
 } from './mock';
 
 interface LoginCredentials {
@@ -69,7 +68,7 @@ export const getUserAccountInfo = (user: UserData): UserAccountInfo => {
 };
 
 export const getUserPurchasesResume = (user: UserData): UserPurchaseResume => {
-  // TODO improve user validation
+  // TODO: improve user validation
   if (!user) {
     throw new Error('Usuário Inválido!');
   }
@@ -85,13 +84,27 @@ export const getUserPurchases = (user: UserData): Purchase[] => {
   return MockPurchaseList;
 };
 
-export const getPartners = (): Retailer[] => {
-  //FIXME we should add a token as parameter?
-  return [
-    MockCORetailer,
-    MockTropicalAtacaoRetailer,
-    MockTropicalMultilojaRetailer,
+export const getPartners = (): Partners => {
+  //FIXME: we should add a token as parameter?
+
+  const {partners} = MockPartners;
+
+  return partners;
+};
+
+export const getPartnerDetails = (id: number): Retailer | undefined => {
+  if (id < 0) {
+    throw new Error('Parceiro não cadastrado em nossa base de dados');
+  }
+  const {partners} = MockPartners;
+  const {data} = partners;
+  let temp = [
+    ...data.acessories,
+    ...data.food,
+    ...data.supermarket,
+    ...data.telephony,
   ];
+  return temp.find((p) => p.id === id);
 };
 
 export const getGeneralUserAccountInfo = (

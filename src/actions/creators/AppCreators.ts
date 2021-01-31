@@ -1,6 +1,6 @@
 import {ActionTypes} from '../types';
 import {AppAction} from '../AppActions';
-import {Retailer} from '../payloads';
+import {Partners, Retailer} from '../payloads';
 
 export const appShowLoading = (): AppAction => {
   return {
@@ -36,7 +36,7 @@ export const appGetPartnersDidFail = (error: string): AppAction => {
   };
 };
 
-export const appGetPartnersDidSuccess = (partners: Retailer[]): AppAction => {
+export const appGetPartnersDidSuccess = (partners: Partners): AppAction => {
   return {
     type: ActionTypes.APP_GET_PARTNERS_DID_SUCCESS,
     payload: {

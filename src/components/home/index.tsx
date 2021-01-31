@@ -5,7 +5,7 @@ import {
   BottomTabBarOptions,
 } from '@react-navigation/bottom-tabs';
 import {BottomNavigation, BottomNavigationTab} from '@ui-kitten/components';
-import {Partners} from '../home/Partners';
+import {PartnersComponent} from './PartnersComponent';
 import {
   HomeUserStats as Home,
   Profile as Perfil,
@@ -35,7 +35,7 @@ const HomeNavigator: React.FC = () => {
     <Tab.Navigator tabBar={(props) => <BottomTabBar {...props} />}>
       <Tab.Screen name="Home" component={Home} />
       <Tab.Screen name="Compras" component={Compras} />
-      <Tab.Screen name="Parceiros" component={Partners} />
+      <Tab.Screen name="Parceiros" component={PartnersComponent} />
       <Tab.Screen name="Perfil" component={Perfil} />
     </Tab.Navigator>
   );

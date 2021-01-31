@@ -1,5 +1,5 @@
 import {ActionTypes} from './types';
-import {Retailer} from './payloads';
+import {Retailer, Partners} from './payloads';
 
 interface AppShowLoading {
   type: ActionTypes.APP_SHOW_LOADING;
@@ -19,7 +19,7 @@ export interface AppGetPartners {
 }
 export interface AppGetPartnersDidSuccess {
   type: ActionTypes.APP_GET_PARTNERS_DID_SUCCESS;
-  payload: {partners: Retailer[]};
+  payload: {partners: Partners};
 }
 
 export interface AppGetPartnersDidFail {

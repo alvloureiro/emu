@@ -35,18 +35,23 @@ export interface UserPurchaseResume {
   purchases: Purchase[];
 }
 
-export interface RetailerCategory {
-  name: string;
-}
-
 export interface Retailer {
   id: number;
-  category: RetailerCategory;
+  category: string;
   name: string;
   logo_url: string;
   phone: string;
   address: string;
   parent_store_location: string;
+}
+
+export interface Partners {
+  data: {
+    supermarket: Array<Retailer>;
+    food: Array<Retailer>;
+    acessories: Array<Retailer>;
+    telephony: Array<Retailer>;
+  };
 }
 
 export interface GeneralUserAccountInfo {

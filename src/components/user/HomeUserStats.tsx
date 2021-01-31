@@ -13,6 +13,7 @@ import {
 import {useTypedSelector} from '../../hooks/useTypedSelector';
 import {useActions} from '../../hooks/useActions';
 import {UserAccountInfo, UserPurchaseResume} from '../../actions';
+import {Header} from '../common';
 
 type Info = {
   title: string;
@@ -118,11 +119,7 @@ export const HomeUserStats: React.FC = () => {
 
   return (
     <>
-      <View style={header.container}>
-        {
-          //TODO: Add implementation
-        }
-      </View>
+      <Header title="" />
       {userAccountInfo ? ( //FIXME: Put it inside another file
         <ViewPager
           selectedIndex={userInfoViewStatsIndex}
@@ -238,7 +235,7 @@ const card = StyleSheet.create({
 const list = {
   container: {
     backgroundColor: 'white',
-    height: '100%',
+    // height: '100%',
     paddingTop: 20,
   },
   contentContainer: {

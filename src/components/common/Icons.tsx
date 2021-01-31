@@ -18,3 +18,11 @@ export const ProfileIcon = (props: any) => (
 export const Wallet = (props: any) => (
   <Icon {...props} name="briefcase-outline" />
 );
+
+export const ForwardIcon = (props: any) => (
+  <Icon {...props} name="arrow-ios-forward" />
+);
+
+export const ChatIcon = (props: any) => (
+  <Icon {...props} name="message-circle-outline" />
+);

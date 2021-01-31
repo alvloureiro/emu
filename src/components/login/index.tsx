@@ -16,8 +16,7 @@ const RootNavigator: React.FC = () => {
     <NavigationContainer ref={RootNavigation.navigationRef}>
       <RootStack.Navigator
         initialRouteName="Login"
-        screenOptions={TransitionsScreenOptions}
-        headerMode="none">
+        screenOptions={TransitionsScreenOptions}>
         <RootStack.Screen
           name="Login"
           component={LoginForm}

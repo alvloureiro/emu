@@ -84,7 +84,7 @@ const LoginForm: React.FC<Props> = (props) => {
         <TouchableWithoutFeedback
           onPress={() => {
             console.log('go to forgot password component');
-            props.navigation.navigate('ForgotPassword');
+            props.navigation.navigate('ForgotPassword', {});
           }}>
           <Text style={styles.text} status="info">
             {strings.FORGOT_PASSWORD}

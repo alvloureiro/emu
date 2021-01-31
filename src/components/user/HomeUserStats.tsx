@@ -53,7 +53,6 @@ export const HomeUserStats: React.FC = () => {
         flexDirection: 'row',
         alignItems: 'flex-start',
       }}>
-      {/* <Icon name="bar-chart-outline" /> */}
       <Text category="h4" style={{fontWeight: 'bold'}}>
         {info.title}
       </Text>

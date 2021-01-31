@@ -3,6 +3,7 @@ import {StyleSheet, View} from 'react-native';
 import {Button, Input, Layout} from '@ui-kitten/components';
 
 const ForgotPassword: React.FC = () => {
+  // TODO: connect with redux
   const [email, setEmail] = useState('');
 
   const handleEmailChange = (email: string) => {
@@ -45,8 +46,7 @@ const styles = StyleSheet.create({
     alignItems: 'center',
   },
   form: {
-    //backgroundColor: colors.BLUELIGHT,
-    flex: 1,
+    // flex: 1,
     justifyContent: 'center',
     width: '90%',
   },

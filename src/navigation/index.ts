@@ -8,6 +8,7 @@ export type RootTabParamsList = {
   Home: {user: UserData};
   Compras: {user: UserData};
   Limites: {user: UserData};
+  Parceiros: {user: UserData} | undefined;
 };
 export type HomeUserRouteProp = RouteProp<RootTabParamsList, 'Home'>;
 export type HomeUserNavigationProp = BottomTabNavigationProp<

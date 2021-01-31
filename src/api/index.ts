@@ -5,6 +5,7 @@ import {
   UserPurchaseResume,
   Purchase,
   Retailer,
+  GeneralUserAccountResume,
 } from '../actions';
 import {
   MockLoginCredentials,
@@ -90,5 +91,24 @@ export const getPartners = (): Retailer[] => {
     MockCORetailer,
     MockTropicalAtacaoRetailer,
     MockTropicalMultilojaRetailer,
+  ];
+};
+
+export const getGeneralUserAccountInfo = (
+  user: UserData,
+): GeneralUserAccountResume => {
+  if (!user) {
+    throw new Error('Usuário Inválido! ou inexistente em nossa base de dados!');
+  }
+
+  return [
+    {
+      title: 'Limites',
+      data: MockUserAccountInfo,
+    },
+    {
+      title: 'Compras',
+      data: MockUserPurchaseResume,
+    },
   ];
 };

@@ -4,6 +4,7 @@ import {
   UserAccountInfo,
   Purchase,
   UserPurchaseResume,
+  GeneralUserAccountResume,
 } from '../payloads';
 import {UserAction} from '../UserActions';
 
@@ -93,6 +94,37 @@ export const userChangeInfoCardStats = (index: number): UserAction => {
     type: ActionTypes.USER_CHANGE_INFO_VIEW_STATS,
     payload: {
       index,
+    },
+  };
+};
+
+export const userGetGeneralUserAccountInfo = (user: UserData): UserAction => {
+  return {
+    type: ActionTypes.USER_GET_GENERAL_ACCOUNT_INFO,
+    payload: {
+      user,
+    },
+  };
+};
+
+export const userGetGeneralUserAccountInfoDidSuccess = (
+  info: GeneralUserAccountResume,
+): UserAction => {
+  return {
+    type: ActionTypes.USER_GET_GENERAL_ACCOUNT_INFO_DID_SUCCESS,
+    payload: {
+      info,
+    },
+  };
+};
+
+export const userGetGeneralUserAccountInfoDidFail = (
+  error: string,
+): UserAction => {
+  return {
+    type: ActionTypes.USER_GET_GENERAL_ACCOUNT_INFO_DID_FAIL,
+    payload: {
+      error,
     },
   };
 };

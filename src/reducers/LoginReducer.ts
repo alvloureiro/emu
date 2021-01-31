@@ -2,13 +2,13 @@ import {ActionTypes, LoginAction, UserData} from '../actions';
 
 interface LoginState {
   username: string;
-  userData: UserData | null;
+  userData: UserData;
   error: string | null;
 }
 
 const intialState: LoginState = {
   username: '',
-  userData: null,
+  userData: {email: '', name: '', id: -1, photo_url: '', signup_date: null},
   error: null,
 };
 

@@ -3,7 +3,7 @@ export interface UserData {
   name: string;
   photo_url: string;
   email: string;
-  signup_date: Date;
+  signup_date: Date | null;
 }
 
 export interface UserAccountInfo {
@@ -48,3 +48,10 @@ export interface Retailer {
   address: string;
   parent_store_location: string;
 }
+
+export interface GeneralUserAccountInfo {
+  title: string;
+  data: UserPurchaseResume | UserAccountInfo;
+}
+
+export type GeneralUserAccountResume = Array<GeneralUserAccountInfo>;

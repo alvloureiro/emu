@@ -5,11 +5,13 @@ import {
   UserGetAccountInfo,
   UserGetPurchases,
   UserGetPurchaseResume,
+  UserGeneralAccountInfo,
 } from '../actions';
 import {
   getUserAccountInfo,
   getUserPurchases,
   getUserPurchasesResume,
+  getGeneralUserAccountInfo,
 } from '../api';
 
 function* getUserAccountInfoSaga(action: UserGetAccountInfo) {
@@ -54,6 +56,24 @@ function* getUserPurchaseResumeSaga(action: UserGetPurchaseResume) {
   }
 }
 
+function* getGeneralUserAccountInfoSaga(action: UserGeneralAccountInfo) {
+  try {
+    console.log('getGeneralUserAccountInfoSaga', action);
+    const {user} = action.payload;
+    yield put(actionCreators.appShowLoading());
+    const generalInfo = yield call(getGeneralUserAccountInfo, user);
+    yield put(actionCreators.appHideLoading());
+    yield put(
+      actionCreators.userGetGeneralUserAccountInfoDidSuccess(generalInfo),
+    );
+  } catch (error) {
+    yield put(actionCreators.appHideLoading());
+    yield put(
+      actionCreators.userGetGeneralUserAccountInfoDidFail(error.message),
+    );
+  }
+}
+
 function* watchUserGetAccountInfo() {
   yield takeEvery(ActionTypes.USER_GET_ACCOUNT_INFO, getUserAccountInfoSaga);
 }
@@ -69,10 +89,18 @@ function* watchUserGetPurchaseResume() {
   );
 }
 
+function* watchGetGeneralUserAccountInfo() {
+  yield takeEvery(
+    ActionTypes.USER_GET_GENERAL_ACCOUNT_INFO,
+    getGeneralUserAccountInfoSaga,
+  );
+}
+
 export default function* () {
   yield all([
     fork(watchUserGetAccountInfo),
     fork(watchUserGetPurchases),
     fork(watchUserGetPurchaseResume),
+    fork(watchGetGeneralUserAccountInfo),
   ]);
 }

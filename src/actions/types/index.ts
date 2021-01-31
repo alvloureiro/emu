@@ -29,6 +29,9 @@ export enum ActionTypes {
   USER_GET_PURCHASES_RESUME_DID_FAIL = 'user_get_purchases_resume_did_fail',
 
   USER_CHANGE_INFO_VIEW_STATS = 'user_change_info_view_stats',
+  USER_GET_GENERAL_ACCOUNT_INFO = 'user_get_general_account_info',
+  USER_GET_GENERAL_ACCOUNT_INFO_DID_SUCCESS = 'user_get_general_account_info_did_success',
+  USER_GET_GENERAL_ACCOUNT_INFO_DID_FAIL = 'user_get_general_account_info_did_fail',
 
   // Partner actions
   APP_GET_PARTNERS = 'app_get_partners',

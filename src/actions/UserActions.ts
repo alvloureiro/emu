@@ -4,6 +4,7 @@ import {
   UserPurchaseResume,
   UserAccountInfo,
   UserData,
+  GeneralUserAccountResume,
 } from './payloads';
 
 export interface UserGetAccountInfo {
@@ -76,6 +77,26 @@ export interface UserChangeInfoViewStats {
   };
 }
 
+export interface UserGeneralAccountInfo {
+  type: ActionTypes.USER_GET_GENERAL_ACCOUNT_INFO;
+  payload: {
+    user: UserData;
+  };
+}
+export interface UserGeneralAccountInfoDidSuccess {
+  type: ActionTypes.USER_GET_GENERAL_ACCOUNT_INFO_DID_SUCCESS;
+  payload: {
+    info: GeneralUserAccountResume;
+  };
+}
+
+export interface UserGeneralAccountInfoDidFail {
+  type: ActionTypes.USER_GET_GENERAL_ACCOUNT_INFO_DID_FAIL;
+  payload: {
+    error: string;
+  };
+}
+
 export type UserAction =
   | UserGetAccountInfo
   | UserGetAccountInfoDidSuccess
@@ -86,4 +107,7 @@ export type UserAction =
   | UserGetPurchaseResume
   | UserGetPurchaseResumeDidSuccess
   | UserGetPurchaseResumeDidFail
-  | UserChangeInfoViewStats;
+  | UserChangeInfoViewStats
+  | UserGeneralAccountInfo
+  | UserGeneralAccountInfoDidSuccess
+  | UserGeneralAccountInfoDidFail;

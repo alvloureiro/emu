@@ -93,3 +93,14 @@ export const MockUserPurchaseResume = {
   },
   purchases: MockPurchaseList,
 };
+
+export const MockGeneralUserAccountInfo = [
+  {
+    title: 'Limites',
+    data: MockUserAccountInfo,
+  },
+  {
+    title: 'Compras',
+    data: MockUserPurchaseResume,
+  },
+];
